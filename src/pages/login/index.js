@@ -1,19 +1,19 @@
-import React, { Component, Fragment } from "react";
-import { Redirect } from "react-router-dom";
-import axios from "axios";
-import PropTypes from "prop-types";
+import React, { Component, Fragment } from 'react';
+import { Redirect } from 'react-router-dom';
+import axios from 'axios';
+import PropTypes from 'prop-types';
 
-import styles from "./styles";
+import styles from './styles';
 
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { Form, Input, Scope } from "@rocketseat/unform";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Form, Input, Scope } from '@rocketseat/unform';
 
-import { Creators as GamerActions } from "../../store/ducks/login";
+import { Creators as GamerActions } from '../../store/ducks/login';
 
 class Login extends Component {
   state = {
-    loading: false
+    loading: false,
   };
 
   handleSubmit = async data => {
@@ -33,11 +33,6 @@ class Login extends Component {
      */
   };
   render() {
-    console.log("if (this.props.data.token) {");
-    console.log(this.props);
-    if (this.props.data && this.props.data.token) {
-      return <Redirect to="/Main" />;
-    }
     return (
       <Form onSubmit={this.handleSubmit}>
         <Input name="email" />
@@ -53,10 +48,9 @@ const mapStateToProps = state => ({
   favorites: state.favorites
 });
 */
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(GamerActions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(GamerActions, dispatch);
 
 export default connect(
   null,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Login);

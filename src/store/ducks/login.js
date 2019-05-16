@@ -3,9 +3,9 @@
  */
 
 export const Types = {
-  ADD_REQUEST: "login/ADD_REQUEST",
-  ADD_SUCCESS: "login/ADD_SUCCESS",
-  ADD_FAILURE: "login/ADD_FAILURE"
+  ADD_REQUEST: 'login/ADD_REQUEST',
+  ADD_SUCCESS: 'login/ADD_SUCCESS',
+  ADD_FAILURE: 'login/ADD_FAILURE',
 };
 
 /**
@@ -14,7 +14,7 @@ export const Types = {
  */
 const INITIAL_STATE = {
   loading: false,
-  data: {}
+  data: {},
 };
 
 export default function login(state = INITIAL_STATE, action) {
@@ -22,7 +22,7 @@ export default function login(state = INITIAL_STATE, action) {
     case Types.ADD_REQUEST:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case Types.ADD_SUCCESS:
       debugger;
@@ -30,13 +30,13 @@ export default function login(state = INITIAL_STATE, action) {
         ...state,
         loading: false,
         error: null,
-        data: action.payload.data
+        data: action.payload.data,
       };
     case Types.ADD_FAILURE:
       return {
         ...state,
         loading: false,
-        error: action.payload.error
+        error: action.payload.error,
       };
     default:
       return state;
@@ -51,19 +51,19 @@ export const Creators = {
   addLoginRequest: user => ({
     type: Types.ADD_REQUEST,
     payload: {
-      user
-    }
+      user,
+    },
   }),
 
   addLoginSuccess: data => ({
     type: Types.ADD_SUCCESS,
     payload: {
-      data
-    }
+      data,
+    },
   }),
 
   addLoginFailure: error => ({
     type: Types.ADD_FAILURE,
-    payload: { error }
-  })
+    payload: { error },
+  }),
 };
