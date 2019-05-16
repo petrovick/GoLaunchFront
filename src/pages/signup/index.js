@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Creators as SignupActions } from '../../store/ducks/signup';
 
 const schema = Yup.object().shape({
   name: Yup.string().required(),
@@ -8,43 +11,44 @@ const schema = Yup.object().shape({
     .email()
     .required(),
   isGamer: Yup.boolean(),
-  password: Yup.string().when('$updatePassword', {
-    is: true,
-    then: Yup.string()
-      .min(4)
-      .required(),
-    otherwise: Yup.string().strip(true),
-  }),
+  password: Yup.string(),
 });
 
-export default function Signup() {
-  const [updatePassword, setUpdatePassword] = useState(false);
+class Signup extends Component {
+  componentDidMount() {}
 
-  const initialData = {
-    name: 'John Doe',
-    email: 'johndoe@example.com',
-    isGamer: true,
+  initialData = {
+    name: '',
+    email: '',
+    isGamer: false,
   };
 
-  function handleSubmit(data) {
-    debugger;
+  handleSubmit = data => {
     console.tron.log(data);
+    debugger;
+    this.props.addSignupRequest(data);
+  };
+
+  render() {
+    return (
+      <Form schema={schema} initialData={this.initialData} onSubmit={this.handleSubmit}>
+        <Input name="name" placeholder="Your name" />
+        <Input name="email" placeholder="usermail@email.com" />
+        <Input name="password" type="password" placeholder="YourH4rdP4ssw0rd" />
+        <Input name="isGamer" type="checkbox" />
+        <button type="submit">Save</button>
+      </Form>
+    );
   }
-
-  return (
-    <Form
-      schema={schema}
-      initialData={initialData}
-      context={{ updatePassword }}
-      onSubmit={handleSubmit}
-    >
-      <Input name="name" />
-      <Input name="email" />
-      <Input name="password" type="password" />
-      <Input name="isGamer" type="checkbox" />
-
-
-      <button type="submit">Save</button>
-    </Form>
-  );
 }
+
+const mapStateToProps = state => ({
+  signup: state.signup,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators(SignupActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Signup);

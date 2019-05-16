@@ -9,6 +9,7 @@ import Login from '../pages/login';
 import Gamer from '../pages/gamer';
 import Businessman from '../pages/businessman';
 import Signup from '../pages/signup';
+import Rank from '../pages/businessman/rank';
 
 const Routes = () => (
   <ConnectedRouter history={history}>
@@ -18,6 +19,7 @@ const Routes = () => (
         <Route exact path="/gamer" component={Gamer} />
         <Route exact path="/businessman" component={Businessman} />
         <Route exact path="/signup" component={Signup} />
+        <Route exact path="/businessman/gamerank/:game" component={Rank} />
       </Switch>
     </Fragment>
   </ConnectedRouter>

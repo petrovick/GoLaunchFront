@@ -7,13 +7,13 @@ const api = axios.create({
 
 api.interceptors.request.use(async (config) => {
   console.log(config);
-  debugger;
+  // debugger;
   if (config.url.includes('session/') || config.url.includes('user/')) {
     // No header neeeded
-    debugger;
+    // debugger;
     return config;
   }
-  debugger;
+  // debugger;
   const token = getToken();
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;

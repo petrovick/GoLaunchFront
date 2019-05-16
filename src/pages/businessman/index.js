@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-// import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // import { Container } from './styles';
@@ -11,7 +11,6 @@ import { Creators as BusinessmanActions } from '../../store/ducks/businessman';
 
 class Businessman extends Component {
   componentDidMount = () => {
-    debugger;
     console.tron.log(this.props);
     this.props.listGamesRequest();
   };
@@ -19,7 +18,23 @@ class Businessman extends Component {
   render() {
     return (
       <Fragment>
-        <ul />
+        <ul>
+          {this.props.businessman &&
+            this.props.businessman.data &&
+            this.props.businessman.data.map(item => (
+              <li key={item._id}>
+                <p>{item.name}</p>
+                <Link
+                  to={{
+                    pathname: `/businessman/gamerank/${item._id}`,
+                  }}
+                  params={{ game: item._id }}
+                >
+                  Create Idea
+                </Link>
+              </li>
+            ))}
+        </ul>
       </Fragment>
     );
   }
