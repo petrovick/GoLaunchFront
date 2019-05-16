@@ -1,19 +1,19 @@
-import React, { Component, Fragment } from 'react';
-import { Redirect } from 'react-router-dom';
-import axios from 'axios';
-import PropTypes from 'prop-types';
+import React, { Component, Fragment } from "react";
+import { Redirect, Link } from "react-router-dom";
+import axios from "axios";
+import PropTypes from "prop-types";
 
-import styles from './styles';
+import { Container, Formulario, ContainerButton } from "./styles";
 
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { Form, Input, Scope } from '@rocketseat/unform';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { Form, Input, Scope } from "@rocketseat/unform";
 
-import { Creators as GamerActions } from '../../store/ducks/login';
+import { Creators as GamerActions } from "../../store/ducks/login";
 
 class Login extends Component {
   state = {
-    loading: false,
+    loading: false
   };
 
   handleSubmit = async data => {
@@ -34,12 +34,24 @@ class Login extends Component {
   };
   render() {
     return (
-      <Form onSubmit={this.handleSubmit}>
-        <Input name="email" />
-        <Input name="password" />
-
-        <button type="submit">Login</button>
-      </Form>
+      <Container>
+        <Formulario>
+          <Form onSubmit={this.handleSubmit}>
+            <Input name="email" placeholder="Your E-mail" />
+            <Input name="password" placeholder="Type your password" />
+            <ContainerButton>
+              <Link
+                to={{
+                  pathname: `/signup`
+                }}
+              >
+                Signup
+              </Link>
+              <button type="submit">Login</button>
+            </ContainerButton>
+          </Form>
+        </Formulario>
+      </Container>
     );
   }
 }
@@ -48,9 +60,10 @@ const mapStateToProps = state => ({
   favorites: state.favorites
 });
 */
-const mapDispatchToProps = dispatch => bindActionCreators(GamerActions, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(GamerActions, dispatch);
 
 export default connect(
   null,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(Login);

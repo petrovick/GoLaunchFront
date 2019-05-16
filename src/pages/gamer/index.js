@@ -1,13 +1,29 @@
-import React, { Component, Fragment } from 'react';
+import React, {
+  Component,
+  Fragment
+} from "react";
 // import { Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-// import { Container } from './styles';
+import {
+  Container,
+  Formulario,
+  ContainerButton,
+  Label
+} from "../../styles/lists";
 
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import {
+  connect
+} from "react-redux";
+import {
+  bindActionCreators
+} from "redux";
 
-import { Creators as GamerActions } from '../../store/ducks/gamer';
+import {
+  Creators as GamerActions
+} from "../../store/ducks/gamer";
+
+import GameList from "../../components/GameList";
 
 class Gamer extends Component {
   componentDidMount = () => {
@@ -15,31 +31,37 @@ class Gamer extends Component {
     this.props.listGamerGamesRequest();
   };
 
+  onClickAddPoints = item => {
+    debugger;
+    this.props.addGamePointRequest({
+      game: item.game._id,
+      points: item.points + 1
+    });
+  };
+
   render() {
-    return (
-      <Fragment>
-        <ul>
-          {this.props.gamer &&
-            this.props.gamer.data.games &&
-            this.props.gamer.data.games.map(item => (
-              <li key={item._id}>
-                <p>
-                  {item.game.name} - {item.points}
-                </p>
-              </li>
-            ))}
-        </ul>
-      </Fragment>
+    return ( <
+      Container >
+      <
+      GameList games = {
+        this.props.gamer.data.games
+      }
+      onClickAddPoints = {
+        this.onClickAddPoints
+      }
+      /> <
+      /Container>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  gamer: state.gamer,
+  gamer: state.gamer
 });
-const mapDispatchToProps = dispatch => bindActionCreators(GamerActions, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(GamerActions, dispatch);
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(Gamer);

@@ -1,13 +1,19 @@
-import React, { Component, Fragment } from 'react';
-import { Redirect, Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React, { Component, Fragment } from "react";
+import { Redirect, Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-// import { Container } from './styles';
+import {
+  Container,
+  Formulario,
+  ContainerButton,
+  Label
+} from "../../styles/lists";
+import GameList from "../../components/GameList/index";
 
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
-import { Creators as BusinessmanActions } from '../../store/ducks/businessman';
+import { Creators as BusinessmanActions } from "../../store/ducks/businessman";
 
 class Businessman extends Component {
   componentDidMount = () => {
@@ -17,35 +23,23 @@ class Businessman extends Component {
 
   render() {
     return (
-      <Fragment>
-        <ul>
-          {this.props.businessman &&
-            this.props.businessman.data &&
-            this.props.businessman.data.map(item => (
-              <li key={item._id}>
-                <p>{item.name}</p>
-                <Link
-                  to={{
-                    pathname: `/businessman/gamerank/${item._id}`,
-                  }}
-                  params={{ game: item._id }}
-                >
-                  Create Idea
-                </Link>
-              </li>
-            ))}
-        </ul>
-      </Fragment>
+      <Container>
+        <GameList
+          games={this.props.businessman.data}
+          redirectTo="/businessman/gamerank/"
+        />
+      </Container>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  businessman: state.businessman,
+  businessman: state.businessman
 });
-const mapDispatchToProps = dispatch => bindActionCreators(BusinessmanActions, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(BusinessmanActions, dispatch);
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(Businessman);

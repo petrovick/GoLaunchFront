@@ -1,19 +1,22 @@
-import React, { Fragment } from 'react';
-import { ConnectedRouter } from 'connected-react-router';
-import { Switch, Route } from 'react-router-dom';
+import React, { Fragment } from "react";
+import { ConnectedRouter } from "connected-react-router";
+import { Switch, Route } from "react-router-dom";
 
-import history from './history';
+import history from "./history";
 // import Footer from '../components/Footer';
 
-import Login from '../pages/login';
-import Gamer from '../pages/gamer';
-import Businessman from '../pages/businessman';
-import Signup from '../pages/signup';
-import Rank from '../pages/businessman/rank';
+import Login from "../pages/login";
+import Gamer from "../pages/gamer";
+import Businessman from "../pages/businessman";
+import Signup from "../pages/signup";
+import Rank from "../pages/businessman/rank";
+
+import Global from "../styles/global";
 
 const Routes = () => (
   <ConnectedRouter history={history}>
     <Fragment>
+      <Global />
       <Switch>
         <Route exact path="/" component={Login} />
         <Route exact path="/gamer" component={Gamer} />

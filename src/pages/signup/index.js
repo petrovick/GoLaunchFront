@@ -1,9 +1,13 @@
-import React, { Component } from 'react';
-import { Form, Input } from '@rocketseat/unform';
-import * as Yup from 'yup';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { Creators as SignupActions } from '../../store/ducks/signup';
+import React, { Component } from "react";
+import * as Yup from "yup";
+
+import { Container, Formulario, ContainerButton, Label } from "./styles";
+
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { Form, Input } from "@rocketseat/unform";
+
+import { Creators as SignupActions } from "../../store/ducks/signup";
 
 const schema = Yup.object().shape({
   name: Yup.string().required(),
@@ -11,16 +15,16 @@ const schema = Yup.object().shape({
     .email()
     .required(),
   isGamer: Yup.boolean(),
-  password: Yup.string(),
+  password: Yup.string()
 });
 
 class Signup extends Component {
   componentDidMount() {}
 
   initialData = {
-    name: '',
-    email: '',
-    isGamer: false,
+    name: "",
+    email: "",
+    isGamer: false
   };
 
   handleSubmit = data => {
@@ -31,24 +35,40 @@ class Signup extends Component {
 
   render() {
     return (
-      <Form schema={schema} initialData={this.initialData} onSubmit={this.handleSubmit}>
-        <Input name="name" placeholder="Your name" />
-        <Input name="email" placeholder="usermail@email.com" />
-        <Input name="password" type="password" placeholder="YourH4rdP4ssw0rd" />
-        <Input name="isGamer" type="checkbox" />
-        <button type="submit">Save</button>
-      </Form>
+      <Container>
+        <Formulario>
+          <Form
+            schema={schema}
+            initialData={this.initialData}
+            onSubmit={this.handleSubmit}
+          >
+            <Input name="name" placeholder="Your name" />
+            <Input name="email" placeholder="usermail@email.com" />
+            <Input
+              name="password"
+              type="password"
+              placeholder="YourH4rdP4ssw0rd"
+            />
+            <ContainerButton>
+              <Label>Are you a Gamer?</Label>
+              <Input name="isGamer" type="checkbox" />
+            </ContainerButton>
+            <button type="submit">Save</button>
+          </Form>
+        </Formulario>
+      </Container>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  signup: state.signup,
+  signup: state.signup
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators(SignupActions, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(SignupActions, dispatch);
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(Signup);
