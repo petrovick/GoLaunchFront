@@ -1,6 +1,6 @@
 You can preview this app [here](https://afternoon-tor-24444.herokuapp.com/).
 <br>This app was mainly built to use and test ["Rocketseat's unform library"](https://github.com/Rocketseat/unform).
-<br> You can see the backend of this app at ["petrovick/GoLaunch/"](https://github.com/petrovick/GoLaunch/)
+<br> The backend(NodeJS + Mongo) of this app at ["petrovick/GoLaunch/"](https://github.com/petrovick/GoLaunch/)
 
 ## Installing dependencies
 
