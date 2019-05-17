@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 // import { Container } from './styles';
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import { Creators as BusinessmanActions } from "../../../store/ducks/businessman";
-import GamerList from "../../../components/GamerList";
+import { Creators as BusinessmanActions } from '../../../store/ducks/businessman';
+import GamerList from '../../../components/GamerList';
 
 class Rank extends Component {
   componentDidMount = () => {
@@ -14,22 +14,20 @@ class Rank extends Component {
   render() {
     return (
       <div>
-        <GamerList
-          gamers={this.props.businessman.gamers}
-          game={this.props.match.params.game}
-        />
+        {this.props.businessman && this.props.businessman.gamers && (
+          <GamerList gamers={this.props.businessman.gamers} game={this.props.match.params.game} />
+        )}
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  businessman: state.businessman
+  businessman: state.businessman,
 });
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(BusinessmanActions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(BusinessmanActions, dispatch);
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Rank);
