@@ -1,26 +1,41 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+
 import { Form, Input } from '@rocketseat/unform';
+
+import { connect } from 'react-redux';
+
+import { bindActionCreators } from 'redux';
+
+import { Creators as GamerActions } from '../../../store/ducks/gamer';
+
+import { Container, Formulario } from '../../../styles/lists';
 
 const NewGame = (props) => {
   function handleSubmit(data) {
     console.log(data);
-
-    /**
-     * {
-     *   email: 'email@example.com',
-     *   password: "123456"
-     * }
-     */
+    debugger;
+    props.addGamerGameRequest({
+      name: data.name,
+    });
   }
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <p>PUT A SELECT OF THE GAME HERE</p>
-      <Input name="email" />
-      <Input name="password" type="password" />
-
-      <button type="submit">Sign in</button>
-    </Form>
+    <Container>
+      <Formulario>
+        <Form onSubmit={handleSubmit}>
+          <Input type="text" name="name" />
+          <button type="submit">
+            <i className="fa fa-save" />
+          </button>
+        </Form>
+      </Formulario>
+    </Container>
   );
 };
-export default NewGame;
+
+const mapDispatchToProps = dispatch => bindActionCreators(GamerActions, dispatch);
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(NewGame);

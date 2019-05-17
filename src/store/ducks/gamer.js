@@ -3,13 +3,16 @@
  */
 
 export const Types = {
-  LIST_GAMER_GAMES_REQUEST: "gamer/LIST_GAMER_GAMES_REQUEST",
-  LIST_GAMER_GAMES_SUCCESS: "gamer/LIST_GAMER_GAMES_SUCCESS",
-  LIST_GAMER_GAMES_FAILURE: "gamer/LIST_GAMER_GAMES_FAILURE",
+  LIST_GAMER_GAMES_REQUEST: 'gamer/LIST_GAMER_GAMES_REQUEST',
+  LIST_GAMER_GAMES_SUCCESS: 'gamer/LIST_GAMER_GAMES_SUCCESS',
+  LIST_GAMER_GAMES_FAILURE: 'gamer/LIST_GAMER_GAMES_FAILURE',
 
-  ADD_GAME_POINT_REQUEST: "gamer/ADD_GAME_POINT_REQUEST",
-  ADD_GAME_POINT_SUCCESS: "gamer/ADD_GAME_POINT_SUCCESS",
-  ADD_GAME_POINT_FAILURE: "gamer/ADD_GAME_POINT_FAILURE"
+  ADD_GAME_POINT_REQUEST: 'gamer/ADD_GAME_POINT_REQUEST',
+  ADD_GAME_POINT_SUCCESS: 'gamer/ADD_GAME_POINT_SUCCESS',
+  ADD_GAME_POINT_FAILURE: 'gamer/ADD_GAME_POINT_FAILURE',
+
+  ADD_GAMER_GAME_REQUEST: 'gamer/ADD_GAMER_GAME_REQUEST',
+  ADD_GAME_POINT_FAILURE: 'gamer/ADD_GAMER_GAME_FAILURE',
 };
 
 /**
@@ -18,7 +21,7 @@ export const Types = {
  */
 const INITIAL_STATE = {
   loading: false,
-  data: {}
+  data: {},
 };
 
 export default function gamer(state = INITIAL_STATE, action) {
@@ -27,7 +30,7 @@ export default function gamer(state = INITIAL_STATE, action) {
     case Types.LIST_GAMER_GAMES_REQUEST:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case Types.LIST_GAMER_GAMES_SUCCESS:
       debugger;
@@ -35,19 +38,19 @@ export default function gamer(state = INITIAL_STATE, action) {
         ...state,
         loading: false,
         error: null,
-        data: action.payload.data
+        data: action.payload.data,
       };
     case Types.LIST_GAMER_GAMES_FAILURE:
       return {
         ...state,
         loading: false,
-        error: action.payload.error
+        error: action.payload.error,
       };
 
     case Types.ADD_GAME_POINT_REQUEST:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case Types.ADD_GAME_POINT_SUCCESS:
       debugger;
@@ -55,14 +58,27 @@ export default function gamer(state = INITIAL_STATE, action) {
         ...state,
         loading: false,
         error: null,
-        data: action.payload.data
+        data: action.payload.data,
       };
     case Types.ADD_GAME_POINT_FAILURE:
       return {
         ...state,
         loading: false,
-        error: action.payload.error
+        error: action.payload.error,
       };
+
+    case Types.ADD_GAMER_GAME_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case Types.ADD_GAMER_GAME_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error,
+      };
+
     default:
       return state;
   }
@@ -75,39 +91,51 @@ export default function gamer(state = INITIAL_STATE, action) {
 export const Creators = {
   listGamerGamesRequest: () => ({
     type: Types.LIST_GAMER_GAMES_REQUEST,
-    payload: {}
+    payload: {},
   }),
 
   listGamerGamesSuccess: data => ({
     type: Types.LIST_GAMER_GAMES_SUCCESS,
     payload: {
-      data
-    }
+      data,
+    },
   }),
 
   listGamerGamesFailure: error => ({
     type: Types.LIST_GAMER_GAMES_FAILURE,
     payload: {
-      error
-    }
+      error,
+    },
   }),
 
   addGamePointRequest: data => ({
     type: Types.ADD_GAME_POINT_REQUEST,
-    payload: { data }
+    payload: { data },
   }),
 
   addGamePointSuccess: data => ({
     type: Types.ADD_GAME_POINT_SUCCESS,
     payload: {
-      data
-    }
+      data,
+    },
   }),
 
   addGamePointFailure: error => ({
     type: Types.ADD_GAME_POINT_FAILURE,
     payload: {
-      error
-    }
-  })
+      error,
+    },
+  }),
+
+  addGamerGameRequest: data => ({
+    type: Types.ADD_GAMER_GAME_REQUEST,
+    payload: { data },
+  }),
+
+  addGamerGameFailure: error => ({
+    type: Types.ADD_GAMER_GAME_FAILURE,
+    payload: {
+      error,
+    },
+  }),
 };

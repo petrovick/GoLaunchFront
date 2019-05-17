@@ -7,6 +7,7 @@ import history from "./history";
 
 import Login from "../pages/login";
 import Gamer from "../pages/gamer";
+import NewGame from '../pages/gamer/newgame'
 import Businessman from "../pages/businessman";
 import Signup from "../pages/signup";
 import Rank from "../pages/businessman/rank";
@@ -20,6 +21,8 @@ const Routes = () => (
       <Switch>
         <Route exact path="/" component={Login} />
         <Route exact path="/gamer" component={Gamer} />
+        <Route exact path="/gamer/newgame" component={NewGame} />
+        
         <Route exact path="/businessman" component={Businessman} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/businessman/gamerank/:game" component={Rank} />
