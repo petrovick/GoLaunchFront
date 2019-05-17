@@ -1,5 +1,5 @@
 You can preview this app [here](https://afternoon-tor-24444.herokuapp.com/).
-This app was made for the Rocketseat's Launch Challenge.
+<br>This app was mainly built to use and test ["Rocketseat's unform library"](https://github.com/Rocketseat/unform).
 
 ## Installing dependencies
 
