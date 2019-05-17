@@ -11,12 +11,9 @@ export const ContainerButton = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  
 `;
 
-export const Label = styled.form`
-`;
-
+export const Label = styled.form``;
 
 export const Formulario = styled.form`
   margin-top: 20px;
