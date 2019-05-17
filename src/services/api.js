@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getToken } from './auth';
 
 const api = axios.create({
-  baseURL: 'http://immense-tor-58043.herokuapp.com',
+  baseURL: 'https://immense-tor-58043.herokuapp.com',
 });
 
 api.interceptors.request.use(async (config) => {
