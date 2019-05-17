@@ -10,7 +10,6 @@ api.interceptors.request.use(async (config) => {
   // debugger;
   if (config.url.includes('session/') || config.url.includes('user/')) {
     // No header neeeded
-    // debugger;
     return config;
   }
   // debugger;
