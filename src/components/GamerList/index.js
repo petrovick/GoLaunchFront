@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import { Container, Repository } from "../../styles/componentsList";
 
 function SearchPointsOnGame(game, gamer) {
-  console.tron.log("Filtered game: " + game);
-  console.tron.log(gamer);
+  console.log("Filtered game: " + game);
+  console.log(gamer);
   if (game) {
     debugger;
     var games2 = gamer.games.filter(gameFilter => {

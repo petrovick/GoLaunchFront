@@ -38,8 +38,8 @@ export function* addGamePoint(action) {
       if (data.error) {
         yield put(GamerActions.addGamePointFailure(data.error));
       } else {
-        console.tron.log("console.tron.log(data);");
-        console.tron.log(data);
+        console.log("console.log(data);");
+        console.log(data);
         yield put(GamerActions.addGamePointSuccess(data.gamer));
       }
     }

@@ -13,8 +13,8 @@ export function* listGames(action) {
       yield put(BusinessmanActions.listGamesFailure(data.error));
     } else {
       debugger;
-      console.tron.log("console.tron.log(data);");
-      console.tron.log(data);
+      console.log("console.log(data);");
+      console.log(data);
       yield put(BusinessmanActions.listGamesSuccess(data.data));
     }
   } catch (err) {
@@ -34,7 +34,7 @@ export function* listRankGame(action) {
       yield put(BusinessmanActions.listRankGameFailure(data.error));
     } else {
       debugger;
-      console.tron.log(data);
+      console.log(data);
       yield put(BusinessmanActions.listRankGameSuccess(data));
     }
   } catch (err) {

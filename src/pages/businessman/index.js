@@ -17,7 +17,7 @@ import { Creators as BusinessmanActions } from "../../store/ducks/businessman";
 
 class Businessman extends Component {
   componentDidMount = () => {
-    console.tron.log(this.props);
+    console.log(this.props);
     this.props.listGamesRequest();
   };
 

@@ -41,7 +41,7 @@ class Signup extends Component {
     const { selectedOption } = this.state;
     debugger;
     data.isGamer = selectedOption.value;
-    console.tron.log(data);
+    console.log(data);
     this.props.addSignupRequest(data);
   };
 

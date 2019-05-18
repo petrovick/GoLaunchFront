@@ -13,7 +13,7 @@ export function* addSignup(action) {
       yield put(SignupActions.addSignupFailure(data.error));
     } else {
       debugger;
-      console.tron.log(data);
+      console.log(data);
       debugger;
       if (data._id) {
         yield put(SignupActions.addSignupSuccess(data));
