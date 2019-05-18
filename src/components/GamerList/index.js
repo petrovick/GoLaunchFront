@@ -11,7 +11,7 @@ function SearchPointsOnGame(game, gamer) {
     var games2 = gamer.games.filter(gameFilter => {
       return gameFilter.game._id == game;
     });
-    console.tron.error("games2:" + JSON.stringify(games2));
+    console.log("games2:" + JSON.stringify(games2));
     if(games2.length > 0)
       return games2[0].points;
     return 0;
