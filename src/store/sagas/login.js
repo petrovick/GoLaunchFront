@@ -19,7 +19,7 @@ export function* addLogin(action) {
       login(data.token);
       debugger;
       // yield put(push("/home"));
-      yield put(LoginActions.addLoginSuccess(data));
+      //yield put(LoginActions.addLoginSuccess(data));
 
       if (data.user.isGamer) {
         yield put(push('/gamer'));
