@@ -14,8 +14,6 @@ export function* addLogin(action) {
       yield put(LoginActions.addLoginFailure(data.error));
     } else {
       debugger;
-      console.tron.log(data.token);
-      console.tron.log(data);
       login(data.token);
       debugger;
       // yield put(push("/home"));
