@@ -33,7 +33,6 @@ export default function gamer(state = INITIAL_STATE, action) {
         loading: true,
       };
     case Types.LIST_GAMER_GAMES_SUCCESS:
-      debugger;
       return {
         ...state,
         loading: false,

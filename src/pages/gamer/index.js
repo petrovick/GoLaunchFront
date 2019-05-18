@@ -1,24 +1,18 @@
-import React, { Component, Fragment } from "react";
-import { Redirect, Link } from "react-router-dom";
-import PropTypes from "prop-types";
+import React, { Component, Fragment } from 'react';
+import { Redirect, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-import {
-  Container,
-  Formulario,
-  ContainerButton,
-  Label
-} from "../../styles/lists";
+import { Container, Formulario, ContainerButton, Label } from '../../styles/lists';
 
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import { Creators as GamerActions } from "../../store/ducks/gamer";
+import { Creators as GamerActions } from '../../store/ducks/gamer';
 
-import GameList from "../../components/GameList";
+import GameList from '../../components/GameList';
 
 class Gamer extends Component {
   componentDidMount = () => {
-    debugger;
     this.props.listGamerGamesRequest();
   };
 
@@ -26,7 +20,7 @@ class Gamer extends Component {
     debugger;
     this.props.addGamePointRequest({
       game: item.game._id,
-      points: item.points + 1
+      points: item.points + 1,
     });
   };
 
@@ -35,15 +29,17 @@ class Gamer extends Component {
       <Container>
         <Link
           to={{
-            pathname: "/gamer/newgame"
+            pathname: '/gamer/newgame',
           }}
         >
           <i className="fa fa-plus" />
         </Link>
+
         {this.props.gamer && this.props.gamer.data && (
           <GameList
             games={this.props.gamer.data.games}
             onClickAddPoints={this.onClickAddPoints}
+            editTo="/gamer/editgamergame/"
           />
         )}
       </Container>
@@ -52,12 +48,11 @@ class Gamer extends Component {
 }
 
 const mapStateToProps = state => ({
-  gamer: state.gamer
+  gamer: state.gamer,
 });
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(GamerActions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(GamerActions, dispatch);
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Gamer);

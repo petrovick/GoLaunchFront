@@ -6,7 +6,6 @@ import { Creators as GamerActions } from "../ducks/gamer";
 
 export function* listGamerGames(action) {
   try {
-    debugger;
     const { data } = yield call(
       api.get,
       "/gamer/getgamer",
@@ -16,9 +15,6 @@ export function* listGamerGames(action) {
     if (data.error) {
       yield put(GamerActions.listGamerGamesFailure(data.error));
     } else {
-      debugger;
-      console.tron.log("console.tron.log(data);");
-      console.tron.log(data);
       yield put(GamerActions.listGamerGamesSuccess(data));
     }
   } catch (err) {
@@ -28,7 +24,6 @@ export function* listGamerGames(action) {
 
 export function* addGamePoint(action) {
   try {
-    debugger;
     console.log(JSON.stringify(action.payload.data));
     const redirectTo = action.redirectTo;
     const { data } = yield call(
@@ -36,14 +31,12 @@ export function* addGamePoint(action) {
       "/gamer/addpoint",
       action.payload.data
     );
-    debugger;
     if (redirectTo) {
       yield put(push(redirectTo));
     } else {
       if (data.error) {
         yield put(GamerActions.addGamePointFailure(data.error));
       } else {
-        debugger;
         console.tron.log("console.tron.log(data);");
         console.tron.log(data);
         yield put(GamerActions.addGamePointSuccess(data.gamer));
@@ -58,14 +51,12 @@ export function* addGamePoint(action) {
 
 export function* addGame(action) {
   try {
-    debugger;
     const { data } = yield call(api.post, "/game/add", action.payload.data);
 
     if (data.error) {
       yield put(GamerActions.addGamePointFailure(data.error));
     } else {
-      debugger;
-
+      
       //yield put(addGamePoint(action));
 
       yield call(addGamePoint, {
