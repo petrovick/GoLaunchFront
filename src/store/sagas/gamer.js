@@ -24,8 +24,9 @@ export function* listGamerGames(action) {
 
 export function* addGamePoint(action) {
   try {
+    debugger;
     console.log(JSON.stringify(action.payload.data));
-    const redirectTo = action.redirectTo;
+    const redirectTo = action.payload.data.redirectTo;
     const { data } = yield call(
       api.post,
       "/gamer/addpoint",
@@ -63,10 +64,10 @@ export function* addGame(action) {
         payload: {
           data: {
             game: data.game._id,
-            points: 0
+            points: 0,
+            redirectTo: "/gamer"
           }
-        },
-        redirectTo: "/gamer"
+        }
       });
 
       yield put(GamerActions.addGamePointSuccess(data.gamer));

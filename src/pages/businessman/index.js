@@ -24,10 +24,13 @@ class Businessman extends Component {
   render() {
     return (
       <Container>
+        { this.props &&
+          this.props.businessman && 
+          this.props.businessman.data ? (
         <GameList
           games={this.props.businessman.data}
           redirectTo="/businessman/gamerank/"
-        />
+          />) : <div /> }
       </Container>
     );
   }

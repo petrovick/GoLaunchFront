@@ -3,6 +3,7 @@ import { getToken } from './auth';
 
 const api = axios.create({
   baseURL: 'https://immense-tor-58043.herokuapp.com',
+  //baseURL: 'http://localhost:3001',
 });
 
 api.interceptors.request.use(async (config) => {

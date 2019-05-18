@@ -8,7 +8,7 @@ import { Creators as BusinessmanActions } from '../../../store/ducks/businessman
 import GamerList from '../../../components/GamerList';
 
 class Rank extends Component {
-  componentDidMount = () => {
+  componentWillMount = () => {
     this.props.listRankGameRequest(this.props.match.params.game);
   };
   render() {

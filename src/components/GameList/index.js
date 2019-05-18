@@ -1,17 +1,13 @@
 import React, { Fragment } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Container, Repository } from '../../styles/componentsList';
-
-function funcGames(games) {
-  console.log(games);
-}
 
 const GameList = ({
   games, redirectTo, editTo, onClickAddPoints,
 }) => (
   <Container>
-    {funcGames(games)}
+    
     {games
       && games.map(item => (
         <Repository key={item._id}>
@@ -39,7 +35,9 @@ const GameList = ({
               to={{
                 pathname: `${editTo}${item._id}`,
               }}
-              params={{ gamergame: item._id }}
+              params={{
+                game: item._id
+              }}
             >
               <i className="fa fa-pencil" />
             </Link>
@@ -50,5 +48,15 @@ const GameList = ({
       ))}
   </Container>
 );
+
+GameList.propTypes = {
+  games: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string,
+      name: PropTypes.string,
+      points: PropTypes.number,
+    }),
+  ),
+};
 
 export default GameList;

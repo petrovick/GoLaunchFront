@@ -12,7 +12,7 @@ export function* listGames(action) {
     if (data.error) {
       yield put(BusinessmanActions.listGamesFailure(data.error));
     } else {
-      // debugger;
+      debugger;
       console.tron.log("console.tron.log(data);");
       console.tron.log(data);
       yield put(BusinessmanActions.listGamesSuccess(data.data));
