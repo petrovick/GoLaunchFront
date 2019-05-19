@@ -8,8 +8,9 @@ import { Creators as LoginActions } from '../ducks/login';
 export function* addLogin(action) {
   try {
     debugger;
-    const { data } = yield call(api.post, '/session/login', action.payload.user);
+    const dados = yield call(api.post, '/session/login', action.payload.user);
 
+    const { data } = dados;
     if (data.error) {
       yield put(LoginActions.addLoginFailure(data.error));
     } else {
@@ -17,7 +18,7 @@ export function* addLogin(action) {
       login(data.token);
       debugger;
       // yield put(push("/home"));
-      //yield put(LoginActions.addLoginSuccess(data));
+      // yield put(LoginActions.addLoginSuccess(data));
 
       if (data.user.isGamer) {
         yield put(push('/gamer'));

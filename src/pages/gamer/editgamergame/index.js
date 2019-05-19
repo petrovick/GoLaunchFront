@@ -1,12 +1,21 @@
 import React, { Fragment, Component } from 'react';
 import { Form, Input, Scope } from '@rocketseat/unform';
+import * as Yup from 'yup';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Creators as GamerActions } from '../../../store/ducks/gamer';
 
 // import { Container } from './styles';
-import { Container, Formulario } from '../../../styles/lists';
+import { Container, FormularioDiv } from '../../../styles/lists';
+
+const schema = Yup.object().shape({
+  game: Yup.object().shape({
+    _id: Yup.string().required(),
+    name: Yup.string(),
+  }),
+  points: Yup.number(),
+});
 
 class EditGamerGame extends Component {
   state = {
@@ -41,32 +50,28 @@ class EditGamerGame extends Component {
     const { gamer } = this.state;
     return (
       <Container>
-        <Formulario>
+        <FormularioDiv>
           {this.props &&
             this.props.gamer &&
             this.props.gamer.data &&
             this.props.gamer.data.games &&
             this.props.gamer.data.games.map(item => (
-              <div>
-                <p>
-                  {item._id == this.props.match.params.game ? (
-                    <Fragment>
-                      <p>NÃO SEJA UM COVARDE!!</p>
-                      <p>Seja um Guerreiro, volte a aumente seus pontos 1 a 1.</p>
-                      <Form onSubmit={this.handleSubmit} initialData={item}>
-                        <Input name="game.name" />
-                        <Input name="game._id" hidden />
-                        <Input name="points" />
-                        <button type="submit">Save</button>
-                      </Form>
-                    </Fragment>
-                  ) : (
-                    <div />
-                  )}
-                </p>
-              </div>
+              <Fragment>
+                {item._id == this.props.match.params.game ? (
+                  <Fragment>
+                    <Form schema={schema} onSubmit={this.handleSubmit} initialData={item}>
+                      <Input name="game.name" />
+                      <Input name="game._id" hidden />
+                      <Input name="points" />
+                      <button type="submit">Save</button>
+                    </Form>
+                  </Fragment>
+                ) : (
+                  <div />
+                )}
+              </Fragment>
             ))}
-        </Formulario>
+        </FormularioDiv>
       </Container>
     );
   }

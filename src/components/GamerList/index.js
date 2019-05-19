@@ -34,4 +34,15 @@ const GamerList = ({ gamers, game }) => (
   </Container>
 );
 
+GamerList.propTypes = {
+  gamers: PropTypes.arrayOf(
+    PropTypes.shape({
+      user: {
+        name: PropTypes.string,
+      },
+      totalPoints: PropTypes.number,
+    }),
+  ),
+};
+
 export default GamerList;

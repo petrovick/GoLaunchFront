@@ -20,6 +20,7 @@ const INITIAL_STATE = {
 export default function signup(state = INITIAL_STATE, action) {
   switch (action.type) {
     case Types.ADD_USER_REQUEST:
+      debugger;
       return {
         ...state,
         loading: true,
@@ -29,8 +30,8 @@ export default function signup(state = INITIAL_STATE, action) {
       return {
         ...state,
         loading: false,
-          error: null,
-          data: action.payload.data,
+        error: null,
+        data: action.payload.data,
       };
     case Types.ADD_USER_FAILURE:
       return {

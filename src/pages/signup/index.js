@@ -13,10 +13,10 @@ import { Creators as SignupActions } from '../../store/ducks/signup';
 const schema = Yup.object().shape({
   name: Yup.string().required(),
   email: Yup.string()
-    .email()
+    //.email()
     .required(),
   isGamer: Yup.boolean(),
-  password: Yup.string(),
+  password: Yup.string().required(),
 });
 
 class Signup extends Component {
@@ -40,7 +40,7 @@ class Signup extends Component {
   handleSubmit = data => {
     const { selectedOption } = this.state;
     debugger;
-    data.isGamer = selectedOption.value;
+    data.isGamer = selectedOption ? selectedOption.value : false;
     console.log(data);
     this.props.addSignupRequest(data);
   };
@@ -57,11 +57,12 @@ class Signup extends Component {
 
             <Select value={selectedOption} onChange={this.handleChange} options={options} />
 
-            <ContainerButton>
-              <Label>Are you a Gamer?</Label>
-              <Input name="isGamer" type="checkbox" />
-            </ContainerButton>
-            <button type="submit">Save</button>
+            {this.props.signup.error ? <span>{this.props.signup.error}</span> : <span />}
+
+            <ContainerButton />
+            <button type="submit">
+              {this.props.signup.loading ? <i className="fa fa-spinner" /> : <span>Criar</span>}
+            </button>
           </Form>
         </Formulario>
       </Container>
